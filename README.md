@@ -5,29 +5,44 @@ My journey from Electrical Engineering student to AI Engineer.
 ## About Me
 
 I am an undergraduate student majoring in Electrical Engineering.
-Currently transitioning into AI Application Development.
+
+Currently transitioning into AI Application Development, focusing on:
+
+- Large Language Model Applications
+- RAG Systems
+- AI Agent Development
+- Backend Engineering
+
 
 ## Learning Roadmap
 
 ### Python Engineering
 
+Current Progress:
+
 - Python syntax
-- Function
+- Functions
+- String processing
 - File processing
 - Object-oriented programming
 
 
 ### Backend Development
 
+Planned:
+
 - Git
 - FastAPI
-- API design
+- API Development
+- Database
 
 
-### LLM Application
+### LLM Application Development
 
+Planned:
+
+- LLM API Integration
 - Prompt Engineering
-- LLM API
 - Embedding
 - Vector Database
 - RAG
@@ -36,14 +51,60 @@ Currently transitioning into AI Application Development.
 
 ## Projects
 
-### 1. Personal Knowledge Base RAG System
+
+### 1. Text Processing Module
 
 Status:
-Learning
+Completed
+
+Location:
+00-Python-Basics/function
+
+Features:
+
+- Character counting
+- Word counting
+- Text cleaning
+- Empty line removal
+- Input validation
 
 
-## Daily Progress
+### 2. Personal Knowledge Base RAG System
 
-- 2026-08-25
-  - Setup GitHub repository
-  - Completed Git workflow
+Status:
+Planning
+
+
+Features:
+
+- Document loading
+- Text splitting
+- Embedding
+- Vector database
+- LLM question answering
+
+
+## Learning Progress
+
+
+### 2026-08-25
+
+Completed:
+
+- Setup GitHub repository
+- Learned Git workflow
+- Learned Python functions
+- Implemented text processing module
+
+
+## Tech Stack
+
+Learning:
+
+- Python
+- Git
+- VS Code
+- Conda
+- FastAPI
+- LLM API
+- Vector Database
