@@ -1,26 +1,30 @@
 # 任务一：文本长度统计
 def count_chars(text):
     """
-    统计文本中的字符数
+    统计文本中的字符数,并检查输入是否正确
     Args:
-        text(str):
+        text (str):
             输入文本
     Returns:
         int:
             文本的字符数
     """
+    if not isinstance(text, str):
+        return 0
     return len(text)
 
 def count_words(text):
     """
-    统计文本中的单词数
+    统计文本中的单词数,并检查输入是否正确
     Args:
-        text(str):
+        text (str):
             输入文本
     Returns:
         int:
             文本的单词数
     """
+    if not isinstance(text, str):
+        return 0
     return len(text.split())
     
 
@@ -29,7 +33,7 @@ def clean_text(text):
     """
     清理文本前后空格
     Args:
-        text(str):
+        text (str):
             输入文本
     Returns:
         str:
@@ -42,9 +46,9 @@ def text_info(text):
     """
     统计文本的单词数和字符数
     Args:
-        text(str):
+        text (str):
             输入文本
-    Renturns:
+    Returns:
         dict:
             字符数,单词数
     """
@@ -55,7 +59,7 @@ def remove_empty_lines(text):
     """
     删除文本中的空行
     Args:
-        text(str):
+        text (str):
             输入文本
     Returns:
         str:
@@ -75,3 +79,9 @@ if __name__ == "__main__":
     print(removed)
 
     print(text_info(cleaned))
+
+    print(count_chars("hello"))
+    print(count_chars(123))
+
+    print(count_words("hello ai engineer"))
+    print(count_words(None))
