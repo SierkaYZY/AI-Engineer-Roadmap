@@ -41,6 +41,29 @@ def build_document_info(filename, text):
         "word_count":count_words(text)
     }
 
+def build_document(filename,text):
+     """
+     创建文档信息字典,包含内容和元数据
+     Args:
+        filename(str):
+            文档名
+        text(str):
+            文档内容
+    Returns:
+        dict:
+            文档信息字典,包含内容和元数据
+    """
+     valid_lines = get_valid_lines(text)
+     return{
+          "content":text,
+          "metadata":{
+               "filename":filename,
+               "line_count":len(valid_lines),
+               "char_count":count_chars(text),
+               "word_count":count_words(text)
+          }
+     }
+
 # 任务三:处理多个文档
 def analyze_doucuments(documents):
     """

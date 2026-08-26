@@ -1,0 +1,5 @@
+Artificial intelligence is changing software development.
+
+RAG combines retrieval and generation.
+
+Python is widely used in AI engineering.
