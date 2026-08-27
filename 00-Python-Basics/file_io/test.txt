@@ -3,3 +3,13 @@ Artificial intelligence is changing software development.
 RAG combines retrieval and generation.
 
 Python is widely used in AI engineering.
+
+The ageing of lithium-ion batteries exhibits voltage characteristics similar to those of ISC.
+
+However, there are significant differences in the nature of these two types of failure, and misdiagnosis may pose safety risks.
+
+ Therefore, the accurate identification of lithium-ion battery failures is of great engineering significance.
+
+To address this issue, this study proposes a machine learning-based diagnostic method that analyzes features extracted from IC curves to achieve the identification of aging, ISC faults, and their coexisting conditions. 
+
+The proposed approach demonstrates strong potential for application in fault diagnosis of lithium-ion batteries in electric vehicles. The main contributions of this study are summarized as follows:
