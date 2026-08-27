@@ -3,34 +3,41 @@
 from file_io.document_loader import load_txt
 # 调用文档信息创建函数
 from data_structures.document_analyzer import build_document
+# 调用文本字典切块函数
+from text_splitter.text_splitter import split_document
+# 调用路径
+from pathlib import Path
 
-def process_txt(path,filename):
+def process_txt(path,chunk_size,chunk_overlap=0):
     """
-    阅读文档并创建文档信息
+    阅读文档,创建文档信息,并将字典信息分块
     Args:
         path(str):
             文件路径
-        filename(str):
-            文件名
+        chunk_size(int):
+            块的长度
+        chunk_overlap(int):
+            块的重复元素数
     Returns:
-        dict:
-            文档信息
+        list:
+            切片后的文档字典信息
     """
+    
+    filename = Path(path).name
     text = load_txt(path)
     if text is None:
         return None
-    document_info = build_document(filename,text)
-    return document_info
+    document = build_document(filename,text)
+    chunks = split_document(document,chunk_size,chunk_overlap)
+    return chunks
 
 # 测试检验函数
 if __name__=="__main__":
     path="file_io/test.txt"
-    filename= "test.txt"
-    document_info=process_txt(path,filename)
+    document_info=process_txt(path,20,20)
     if document_info is None:
         print(f"无法读取文件:{path}")
     else:
-        print(document_info["content"])
-        print(document_info["metadata"])
-        print(document_info["metadata"]["filename"])
-        print(document_info["metadata"]["word_count"])
+        print(document_info)
+
+       

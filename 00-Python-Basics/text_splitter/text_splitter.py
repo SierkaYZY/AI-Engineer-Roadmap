@@ -1,8 +1,6 @@
-# 调用函数
-from data_structures.document_analyzer import build_document
 
 # 文本切片
-def split_text(text,chunk_size):
+def split_text(text,chunk_size,chunk_overlap=0):
     """
     对文本按指定长度切片
     Args:
@@ -14,14 +12,19 @@ def split_text(text,chunk_size):
         list:
             切片后的文本
     """
+    if not 0 <= chunk_overlap < chunk_size:
+        raise ValueError("chunk_overlap 必须满足 0 <= chunk_overlap < chunk_size")
+    step = chunk_size - chunk_overlap
     chunks=[]
-    for i in range(0,len(text),chunk_size):
+    for i in range(0,len(text),step):
         chunk = text[i:i+chunk_size]
         chunks.append(chunk)
+        if i+chunk_size >= len(text) :
+            break
     return chunks
 
 # 文本字典切片
-def split_document(document,chunk_size):
+def split_document(document,chunk_size,chunk_overlap=0):
     """
     对读取文本后的字典按指定长度切片
     Args:
@@ -34,7 +37,7 @@ def split_document(document,chunk_size):
             切片后的字典
     """
     text= document["content"]
-    text_chunks= split_text(text,chunk_size)
+    text_chunks= split_text(text,chunk_size,chunk_overlap)
     chunks = []
     for chunk_id,chunk_text in enumerate(text_chunks):
         chunk_metadata= document["metadata"].copy()
@@ -48,12 +51,14 @@ def split_document(document,chunk_size):
 
 # 测试
 if __name__=="__main__":
+    print(split_text("abcdefghij", 4))
+    print(split_text("abcdefghij", 4, 1))
     document = {
     "content": "abcdefghij",
     "metadata": {
         "filename": "test.txt"
+        }
     }
-}
-    chunks = split_document(document, 4)
-    print(chunks)
-    print(document)
+    print(split_document(document, 4, 1))
+    print(split_text("abcdefghij", 4, 4))
+    
