@@ -1,24 +1,46 @@
 from sentence_transformers import SentenceTransformer
 from embedding.similarity import cosine_similarity
-# 第一版测试
-MODEL_NAME = "BAAI/bge-small-zh-v1.5"
+from file_io.document_processor import process_txt
 
 
-if __name__ == "__main__":
-    model = SentenceTransformer(MODEL_NAME)
-
-    texts = [
-    "人工智能正在改变软件开发",
-    "AI正在改变程序开发方式",
-    "今天天气很好"
-    ]
+#在chunk中引入嵌入向量
+def embed_chunks(chunks,model):
+    """
+    在块中引入嵌入向量
+    Args:
+        chunks(list[dict]):
+            文本的分块
+        model:
+            已加载的 SentenceTransformer 模型对象
+    Returns:
+        list[dict]:
+            引入嵌入向量后的块
+    """ 
+    texts = []
+    for chunk in chunks: 
+        texts.append(chunk["content"])
 
     embeddings = model.encode(texts,normalize_embeddings=True)
-    similarity_score = cosine_similarity(embeddings[0],embeddings[1])
-    unrelated_score = cosine_similarity(embeddings[0],embeddings[2])
 
-    print(texts[0], "<->", texts[1])
-    print("相似度：", similarity_score)
+    embedded_chunks = []
+    for chunk,embedding in zip(chunks,embeddings):
+        embedded_chunk = {
+             "content":chunk["content"],
+             "metadata":chunk["metadata"].copy(),
+             "embedding":embedding.tolist()
+        }
+        embedded_chunks.append(embedded_chunk)
+    return embedded_chunks
 
-    print(texts[0], "<->", texts[2])
-    print("相似度：", unrelated_score)
+# 测试    
+if __name__ == "__main__":
+        path = "file_io/test.txt"
+        chunks = process_txt(path,6,2)
+        model_name = "BAAI/bge-small-zh-v1.5"
+        model = SentenceTransformer(model_name)
+        embedded_chunks = embed_chunks(chunks,model)
+        print(len(embedded_chunks))
+        print(embedded_chunks[0]["content"])
+        print(embedded_chunks[0]["metadata"])
+        print(len(embedded_chunks[0]["embedding"]))
+        print(embedded_chunks[0]["embedding"][:5])
