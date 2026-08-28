@@ -100,6 +100,19 @@ Next:
 - LLM question answering
 
 
+## Tech Stack
+
+Learning:
+
+- Python
+- Git
+- VS Code
+- Conda
+- FastAPI
+- LLM API
+- Vector Database
+
+
 ## Learning Progress
 
 
@@ -152,16 +165,3 @@ Completed:
 - Verified persistent storage and distance-based Top K retrieval
 - Separated document indexing from interactive database querying
 - Learned Chroma Collection records and nested query result structures
-
-
-## Tech Stack
-
-Learning:
-
-- Python
-- Git
-- VS Code
-- Conda
-- FastAPI
-- LLM API
-- Vector Database
