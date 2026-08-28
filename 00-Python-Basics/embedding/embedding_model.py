@@ -1,7 +1,5 @@
 from sentence_transformers import SentenceTransformer
-from embedding.similarity import cosine_similarity
 from file_io.document_processor import process_txt
-
 
 #在chunk中引入嵌入向量
 def embed_chunks(chunks,model):
