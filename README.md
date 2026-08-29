@@ -95,12 +95,17 @@ Implemented:
 - Separate document indexing and database query pipelines
 - Context construction from retrieved documents
 - Prompt construction with grounded-answer constraints
+- DeepSeek LLM API integration
+- Environment-based API key management
+- End-to-end RAG question answering pipeline
+- Prompt-based grounded answering when retrieved context is insufficient 
 
 Next:
 
-- LLM API integration
-- LLM question answering
-- End-to-end RAG pipeline
+- Retrieval relevance filtering
+- Improved text chunking
+- Error handling and configuration cleanup
+- Source citation in generated answers
 
 
 ## Tech Stack
@@ -180,3 +185,24 @@ Completed:
 - Added numbered reference blocks for retrieved documents
 - Implemented prompt construction with context, user query, and grounded-answer constraints
 - Practiced `enumerate()`, `join()`, and multiline f-strings
+
+
+### 2026-08-30
+
+Completed:
+
+- Integrated DeepSeek API using the OpenAI-compatible Python SDK
+- Added secure API key loading with `.env` and environment variables
+- Added API key validation before creating the LLM client
+- Implemented `generate_answer()` for DeepSeek model responses
+- Built an end-to-end RAG question answering pipeline
+- Connected retrieval, context construction, prompt construction, and LLM generation
+- Added optional debug output for inspecting Context and Prompt
+- Verified RAG behavior with relevant, cross-domain, and out-of-knowledge-base questions
+- Confirmed grounded answering when retrieved context does not support the question
+
+Observed:
+
+- Top K retrieval may still return irrelevant chunks when no sufficiently relevant document exists
+- Character-based text splitting can break words and reduce context quality
+- Retrieval distance should be analyzed before introducing a relevance threshold
