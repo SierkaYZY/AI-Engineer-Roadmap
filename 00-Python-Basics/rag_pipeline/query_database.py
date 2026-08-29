@@ -18,7 +18,7 @@ def query_document(query,model_name,top_k=2):
         dict:
             输出的相似度较高的结果
     """
-    client = chromadb.PersistentClient(path = "./chroma.db")
+    client = chromadb.PersistentClient(path = "./chroma_db")
     collection = client.get_collection(name="knowledge_chunks")
     model = SentenceTransformer(model_name)
 

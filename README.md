@@ -93,11 +93,14 @@ Implemented:
 - Persistent Chroma vector storage
 - Semantic Top K retrieval
 - Separate document indexing and database query pipelines
+- Context construction from retrieved documents
+- Prompt construction with grounded-answer constraints
 
 Next:
 
-- Context and prompt construction
+- LLM API integration
 - LLM question answering
+- End-to-end RAG pipeline
 
 
 ## Tech Stack
@@ -165,3 +168,15 @@ Completed:
 - Verified persistent storage and distance-based Top K retrieval
 - Separated document indexing from interactive database querying
 - Learned Chroma Collection records and nested query result structures
+
+
+### 2026-08-29
+
+Completed:
+
+- Unified Chroma database paths to `./chroma_db`
+- Removed the duplicate local Chroma database and verified indexing and querying
+- Implemented context construction from Chroma retrieval results
+- Added numbered reference blocks for retrieved documents
+- Implemented prompt construction with context, user query, and grounded-answer constraints
+- Practiced `enumerate()`, `join()`, and multiline f-strings

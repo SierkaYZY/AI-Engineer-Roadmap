@@ -23,7 +23,7 @@ def index_document(path,model_name,chunk_size,chunk_overlap):
             数据库记录数量
 
     """
-    client = chromadb.PersistentClient(path = "./chroma.db")
+    client = chromadb.PersistentClient(path = "./chroma_db")
     collection = client.get_or_create_collection(name = "knowledge_chunks")
     chunks = process_txt(path,chunk_size,chunk_overlap)
     model = SentenceTransformer(model_name)
