@@ -99,13 +99,15 @@ Implemented:
 - Environment-based API key management
 - End-to-end RAG question answering pipeline
 - Prompt-based grounded answering when retrieved context is insufficient 
+- Distance-based retrieval relevance filtering
+- Early exit when no sufficiently relevant context is retrieved
 
 Next:
 
-- Retrieval relevance filtering
 - Improved text chunking
 - Error handling and configuration cleanup
 - Source citation in generated answers
+- Basic automated testing
 
 
 ## Tech Stack
@@ -185,12 +187,6 @@ Completed:
 - Added numbered reference blocks for retrieved documents
 - Implemented prompt construction with context, user query, and grounded-answer constraints
 - Practiced `enumerate()`, `join()`, and multiline f-strings
-
-
-### 2026-08-30
-
-Completed:
-
 - Integrated DeepSeek API using the OpenAI-compatible Python SDK
 - Added secure API key loading with `.env` and environment variables
 - Added API key validation before creating the LLM client
@@ -199,10 +195,37 @@ Completed:
 - Connected retrieval, context construction, prompt construction, and LLM generation
 - Added optional debug output for inspecting Context and Prompt
 - Verified RAG behavior with relevant, cross-domain, and out-of-knowledge-base questions
-- Confirmed grounded answering when retrieved context does not support the question
+- Confirmed prompt-based grounded answering when retrieved context does not support the question
 
 Observed:
 
 - Top K retrieval may still return irrelevant chunks when no sufficiently relevant document exists
 - Character-based text splitting can break words and reduce context quality
 - Retrieval distance should be analyzed before introducing a relevance threshold
+
+
+### 2026-08-30
+
+Completed:
+
+- Analyzed Chroma retrieval distances using relevant and irrelevant queries
+- Compared retrieval distance patterns across RAG, battery, and out-of-knowledge-base questions
+- Added `result_filter.py` for retrieval result post-processing
+- Implemented distance-based retrieval filtering with an experimental threshold
+- Preserved Chroma nested query result structure after filtering
+- Integrated retrieval relevance filtering into the end-to-end RAG pipeline
+- Added an early return when no sufficiently relevant documents are retrieved
+- Avoided unnecessary Context construction, Prompt construction, and LLM API calls for unsupported questions
+- Started ACM-style OJ input/output practice
+- Practiced `input()`, `split()`, `map()`, `list()`, loops, and conditional checks
+- Implemented basic array exercises for summation, min/max, and positive/negative/zero counting
+- Implemented a basic string statistics exercise
+- Learned basic HTTP Request/Response concepts and connected them to DeepSeek API calls
+- Reviewed Client, Server, URL, Header, Body, API, and SDK concepts
+
+Observed:
+
+- The current `0.95` distance threshold is an experimental value based on the current embedding model, knowledge base, and test queries
+- A relevance threshold should not be treated as a universal ChromaDB setting
+- Character-based text splitting still breaks some words and remains a retrieval quality issue
+- Algorithm/OJ practice has now become a fixed daily learning track alongside the AI project
