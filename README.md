@@ -101,14 +101,16 @@ Implemented:
 - Prompt-based grounded answering when retrieved context is insufficient 
 - Distance-based retrieval relevance filtering
 - Early exit when no sufficiently relevant context is retrieved
+- Sentence-aware text chunking
+- Sentence-level chunk overlap
+- Word-boundary fallback for long sentences
 
 Next:
 
-- Improved text chunking
-- Error handling and configuration cleanup
+- Retrieval threshold evaluation and relevance quality testing
 - Source citation in generated answers
+- Error handling and configuration cleanup
 - Basic automated testing
-
 
 ## Tech Stack
 
@@ -229,3 +231,33 @@ Observed:
 - A relevance threshold should not be treated as a universal ChromaDB setting
 - Character-based text splitting still breaks some words and remains a retrieval quality issue
 - Algorithm/OJ practice has now become a fixed daily learning track alongside the AI project
+
+
+### 2026-08-31
+
+Completed:
+
+- Reworked the text splitting pipeline from fixed character slicing to sentence-aware chunking
+- Added sentence boundary detection for both Chinese and English text
+- Implemented sentence-level chunk grouping with configurable chunk size
+- Added sentence-level overlap while preserving complete sentence boundaries
+- Added long-sentence fallback that prioritizes word boundaries before character-level splitting
+- Integrated the new chunking strategy into the existing RAG document processing pipeline
+- Rebuilt the local ChromaDB index using the updated chunking strategy
+- Compared retrieval behavior before and after the chunking update using RAG, battery, and out-of-knowledge-base queries
+- Confirmed that improved chunk boundaries remove common word-splitting artifacts such as broken `lithium-ion` terms
+- Practiced ACM-style duplicate detection using Python `set`
+- Learned the basic idea of hashing and why `set` and `dict` support fast average-case lookup
+- Practiced frequency counting with Python `dict` and `dict.items()`
+- Introduced basic time complexity concepts including O(1), O(n), and O(n²)
+- Learned HTTP GET and POST, JSON serialization, Header vs Body, and common HTTP status codes
+- Connected HTTP concepts to the existing DeepSeek API integration
+- Drafted the first resume-ready description of the RAG project
+
+Observed:
+
+- Better text boundaries do not necessarily make every embedding distance smaller because changing chunk contents changes embedding representations
+- The experimental `0.95` retrieval distance threshold is sensitive to chunking strategy and should not be treated as a universal relevance threshold
+- A fixed distance threshold alone cannot reliably separate all relevant and irrelevant retrieval results in the current small knowledge base
+- Prompt grounding successfully acts as an additional safeguard when irrelevant retrieval results pass the distance filter
+- More systematic retrieval evaluation or reranking may be needed in later iterations
