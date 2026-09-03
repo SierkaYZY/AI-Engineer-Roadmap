@@ -261,3 +261,29 @@ Observed:
 - A fixed distance threshold alone cannot reliably separate all relevant and irrelevant retrieval results in the current small knowledge base
 - Prompt grounding successfully acts as an additional safeguard when irrelevant retrieval results pass the distance filter
 - More systematic retrieval evaluation or reranking may be needed in later iterations
+
+
+### 2026-09-02
+
+Completed:
+
+- Extended RAG context construction to include retrieved document metadata such as filename and chunk ID
+- Added numbered source blocks such as `[资料1]` and `[资料2]` to the generated context
+- Updated prompt rules to require source citations for factual statements and conclusions
+- Verified Source Citation V1 using a knowledge-base question and confirmed that generated answers can reference the supporting retrieved source
+- Reviewed Python `sort()` and `sorted()` and their use in ranking and retrieval workflows
+- Implemented standard binary search with `left`, `right`, and `mid` boundary control
+- Implemented a lower-bound binary search to find the first position whose value is greater than or equal to the target
+- Learned Domain, DNS, IP address, Port, localhost, and `127.0.0.1`
+- Connected HTTP networking concepts to the existing DeepSeek API integration
+- Learned the role of FastAPI in exposing Python application logic as HTTP APIs
+- Practiced explaining the RAG project architecture, retrieval flow, technical choices, optimization decisions, and current limitations in an interview-oriented format
+
+Observed:
+
+- Source citations improve answer traceability and verifiability but do not by themselves guarantee answer correctness
+- Top-K retrieval provides relative ranking rather than an absolute guarantee of relevance
+- Distance filtering, Guard Clauses, Prompt Grounding, and Source Citation solve different reliability problems in the RAG pipeline
+- A fixed retrieval distance threshold remains sensitive to the embedding model, chunking strategy, corpus, and query distribution
+- Retrieval quality should eventually be evaluated with a labeled retrieval evaluation set rather than only manually tuning thresholds
+- FastAPI is the next major engineering step for turning the current local RAG pipeline into an externally callable AI backend service

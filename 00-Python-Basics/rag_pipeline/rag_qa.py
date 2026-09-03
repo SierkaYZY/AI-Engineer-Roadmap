@@ -43,21 +43,8 @@ def rag_answer(
     prompt = build_prompt(query,context)
 
     if debug:
-        print("=== Raw Retrieval Results ===")
-
-        raw_ids = raw_results["ids"][0]
-        raw_distances = raw_results["distances"][0]
-
-        for i in range(len(raw_ids)):
-            print(f"{raw_ids[i]} | distance: {raw_distances[i]}")
-
-        print("=== Filtered Retrieval Results ===")
-
-        ids = results["ids"][0]
-        distances = results["distances"][0]
-
-        for i in range(len(ids)):
-            print(f"{ids[i]} | distance: {distances[i]}")
+       
+        print(context)
 
     answer = generate_answer(prompt)
     
@@ -65,7 +52,7 @@ def rag_answer(
 
 # 测试
 if __name__ == "__main__":
-    query = "What is the capital of France?"
+    query = "What voltage characteristics does the aging of lithium-ion batteries exhibit?"
     model_name = "BAAI/bge-small-zh-v1.5"
     answer = rag_answer(query,model_name,debug=True)
     print("=== Answer ===")
